@@ -28,13 +28,35 @@ namespace CSharpSingleton
         }
     }
 }
+    public class SingletonEager
+    {
+        private static readonly SingletonEager instance = new SingletonEager();
+
+        public int MyValEager;
+
+        private SingletonEager()
+        {
+        }
+
+        public static SingletonEager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
+            SingletonEager.Instance.MyValEager = 321;
+            Console.WriteLine(SingletonEager.Instance.MyValEager);
+            Console.ReadKey();
             Singleton.Instance.MyVal = 123;
             Console.WriteLine(Singleton.Instance.MyVal);
             Console.ReadKey();
+
         }
     }
 }
